@@ -9,3 +9,6 @@ const Button = (title, callback) => {
 }
 
 export default Button;
+
+/* you were at around 3:00 getting ready to mess around in the app.js
+maybe just start the video over though...*/
