@@ -32,6 +32,7 @@ import moment from "moment";
  
    handleChange = function(date) {
     console.log("APP JS HANDLE CHANGE", date._d);
+     clearInterval(this.timer);
      this.setState({
        startDate: date
      });
