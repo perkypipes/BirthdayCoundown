@@ -1,24 +1,30 @@
 import React, { Component } from "react";
- 
- import DatePicker from "react-datepicker";
- import moment from "moment";
- 
- import 'react-datepicker/dist/react-datepicker.css';
- 
- class Picker extends Component {
- 
+
+import DatePicker from "react-datepicker";
+import moment from "moment";
+
+import 'react-datepicker/dist/react-datepicker.css';
+
+class Picker extends Component {
+
   handleChange = function(date) {
-     this.props.callback(date)
+    this.props.callback(date)
   }.bind(this);
- 
-   render() {
-     return (
-       <div className="picker">
-         <DatePicker
+
+  render() {
+    return (
+      <div className="picker">
+        <DatePicker
           selected={this.props.startDate}
-           onChange={this.handleChange}
-         />
-       </div>
+          onChange={this.handleChange}
+        />
+      </div>
+    );
+  }
+
+}
+
+export default Picker;
 
 /*date picker
 import React, { Component } from 'react';
@@ -46,4 +52,4 @@ class Picker extends Component {
             )
     }
 }
-export default Picker;*/
+export default Picker; */

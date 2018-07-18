@@ -1,3 +1,5 @@
+/* 8:41 minutes into the video */
+
 import React, { Component } from "react";
  
 import Picker from "./picker";
@@ -40,16 +42,34 @@ import moment from "moment";
  
    handleGenerate = function() {
     this.setState({ active: true });
-    // Set the date we're counting down to
+    
+    var bday = this.state.startDate.toDate();
+    var today = new Date();
+    var currentMonth = today.getMonth();
+    var birthMonth = bday.getMonth();
+    
+    if(birthMonth > currentMonth) {
+        bday.setFullYear(today.getFullYear())
+    } else if(birthMonth < currentMonth) {
+        bday.setFullYear(today.getFullYear() + 1)
+    } else if(birthMonth == currentMonth) {
+        var currentDay = today.getDate();
+        var birthDay = bday.getDate();
+        
+        if(birthDay > currentDay) {
+            bday.setFullYear(today.getFullYear())
+        }
+        if(birthDay <= currentDay) {
+            bday.setFullYear(today.getFullYear() + 1)
+        }
+    }
 
-     var countDownDate = this.state.startDate.toDate().getTime();
+     var countDownDate = bday.getTime();
  
-     // Update the count down every 1 second
     this.timer = setInterval(function() {
-      // Get todays date and time
-      var now = new Date().getTime();
 
-      // Find the distance between now an the count down date
+      var now = today.getTime();
+
       var distance = countDownDate - now;
 
       // Time calculations for days, hours, minutes and seconds
@@ -61,13 +81,14 @@ import moment from "moment";
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       // Output the result in an element with id="demo"
-      const time = days  "d "  hours  "h "  minutes  "m "  seconds  "s ";
-       const timeRemaining = {
-         days,
-         hours,
-         minutes,
-         seconds
+      const time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+      const timeRemaining = {
+        days,
+        hours,
+        minutes,
+        seconds
       };
+      
       this.setState({ timeRemaining });
 
       // If the count down is over, write some text
